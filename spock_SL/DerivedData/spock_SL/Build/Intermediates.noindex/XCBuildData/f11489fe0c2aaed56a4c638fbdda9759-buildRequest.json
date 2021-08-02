@@ -1,0 +1,50 @@
+{
+  "buildCommand" : "prepareForIndexing",
+  "configuredTargets" : [
+    {
+      "guid" : "bb29fd9ae9d693280234edd31db1a9e93e9c407e99c59b4a294c483adb834be6"
+    }
+  ],
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx11.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/SpencerLowitz/Documents/spock-1sl/spock_SL/DerivedData/spock_SL/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/SpencerLowitz/Documents/spock-1sl/spock_SL/DerivedData/spock_SL/Build/Products",
+      "derivedDataPath" : "/Users/SpencerLowitz/Documents/spock-1sl/spock_SL/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/SpencerLowitz/Documents/spock-1sl/spock_SL/DerivedData/spock_SL/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/SpencerLowitz/Documents/spock-1sl/spock_SL/DerivedData/spock_SL/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/SpencerLowitz/Documents/spock-1sl/spock_SL/DerivedData/spock_SL/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
