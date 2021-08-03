@@ -1,4 +1,4 @@
-#ifndef __PROP_MATH_H__
+ #ifndef __PROP_MATH_H__
 #define __PROP_MATH_H__
 #include <math.h>
 #include "mpi_fake/mpi.h"

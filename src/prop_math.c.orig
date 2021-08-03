@@ -151,30 +151,28 @@ int v_norm_print(double v_to_print_norm[3], char name[256]) {
 }
 
 int v_print(double v_to_print[3], char name[256]) {
-    printf("%s: (%.8e, %.8e, %.8e)\n", name, v_to_print[0], v_to_print[1],
-           v_to_print[2]);
+    printf("%s: (%.8e, %.8e, %.8e)\n", name, v_to_print[0], v_to_print[1], v_to_print[2]);
     return 0;
 }
 
 int v_print6(double v_to_print[6], char name[256]) {
-    printf("%s: (%.6e, %.6e, %.6e) (%.6e, %.6e, %.6e)\n", name, v_to_print[0],
-           v_to_print[1],
+    printf("%s: (%.6e, %.6e, %.6e) (%.6e, %.6e, %.6e)\n", name, v_to_print[0], v_to_print[1],
            v_to_print[2], v_to_print[3],
            v_to_print[4], v_to_print[5]);
     return 0;
 }
 
 int v_print7(double v_to_print[7], char name[256]) {
-    printf("%s: (%.7f, %.7f, %.7f) (%.7f, %.7f, %.7f) %.7f\n", name,
-           v_to_print[0], v_to_print[1], v_to_print[2], v_to_print[3],
-           v_to_print[4], v_to_print[5], v_to_print[6]);
+    printf("%s: (%.7f, %.7f, %.7f) (%.7f, %.7f, %.7f) %.7f\n", name, v_to_print[0],
+           v_to_print[1], v_to_print[2], v_to_print[3], v_to_print[4],
+           v_to_print[5], v_to_print[6]);
     return 0;
 }
 
 //Vector and Matrix math
 // Compute the vector magnitude
 int v_mag(double *v_mag, double v_in[3]) {
-
+    
     v_mag[0] = sqrt(v_in[0] * v_in[0] + v_in[1] * v_in[1] + v_in[2] * v_in[2]);
     return 0;
 }
@@ -182,8 +180,7 @@ int v_mag(double *v_mag, double v_in[3]) {
 //Compute the vector magnitude
 int v_mag6(double *v_mag, double v_in[6]) {
 
-    v_mag[0] = sqrt(v_in[0] * v_in[0] + v_in[1] * v_in[1] + v_in[2] * v_in[2] +
-                    v_in[3] * v_in[3] +
+    v_mag[0] = sqrt(v_in[0] * v_in[0] + v_in[1] * v_in[1] + v_in[2] * v_in[2] + v_in[3] * v_in[3] +
                     v_in[4] * v_in[4] + v_in[5] * v_in[5]);
     return 0;
 }
@@ -310,56 +307,44 @@ int m_x_v(double v_out[3], double m_in[3][3], double v_in[3]) {
 
 //Matrix x Vector
 int m_x_v6(double v_out[6], double **m_in, double v_in[6]) {
-    v_out[0] = m_in[0][0] * v_in[0] + m_in[0][1] * v_in[1] + m_in[0][2] * v_in[2] +
-               m_in[0][3] * v_in[3]
+    v_out[0] = m_in[0][0] * v_in[0] + m_in[0][1] * v_in[1] + m_in[0][2] * v_in[2] + m_in[0][3] * v_in[3]
                + m_in[0][4] * v_in[4] +
                m_in[0][5] * v_in[5];
-    v_out[1] = m_in[1][0] * v_in[0] + m_in[1][1] * v_in[1] + m_in[1][2] * v_in[2] +
-               m_in[1][3] * v_in[3]
+    v_out[1] = m_in[1][0] * v_in[0] + m_in[1][1] * v_in[1] + m_in[1][2] * v_in[2] + m_in[1][3] * v_in[3]
                + m_in[1][4] * v_in[4] +
                m_in[1][5] * v_in[5];
-    v_out[2] = m_in[2][0] * v_in[0] + m_in[2][1] * v_in[1] + m_in[2][2] * v_in[2] +
-               m_in[2][3] * v_in[3]
+    v_out[2] = m_in[2][0] * v_in[0] + m_in[2][1] * v_in[1] + m_in[2][2] * v_in[2] + m_in[2][3] * v_in[3]
                + m_in[2][4] * v_in[4] +
                m_in[2][5] * v_in[5];
-    v_out[3] = m_in[3][0] * v_in[0] + m_in[3][1] * v_in[1] + m_in[3][2] * v_in[2] +
-               m_in[3][3] * v_in[3]
+    v_out[3] = m_in[3][0] * v_in[0] + m_in[3][1] * v_in[1] + m_in[3][2] * v_in[2] + m_in[3][3] * v_in[3]
                + m_in[3][4] * v_in[4] +
                m_in[3][5] * v_in[5];
-    v_out[4] = m_in[4][0] * v_in[0] + m_in[4][1] * v_in[1] + m_in[4][2] * v_in[2] +
-               m_in[4][3] * v_in[3]
+    v_out[4] = m_in[4][0] * v_in[0] + m_in[4][1] * v_in[1] + m_in[4][2] * v_in[2] + m_in[4][3] * v_in[3]
                + m_in[4][4] * v_in[4] +
                m_in[4][5] * v_in[5];
-    v_out[5] = m_in[5][0] * v_in[0] + m_in[5][1] * v_in[1] + m_in[5][2] * v_in[2] +
-               m_in[5][3] * v_in[3]
+    v_out[5] = m_in[5][0] * v_in[0] + m_in[5][1] * v_in[1] + m_in[5][2] * v_in[2] + m_in[5][3] * v_in[3]
                + m_in[5][4] * v_in[4] +
                m_in[5][5] * v_in[5];
     return 0;
 }
 
 int m_x_v6bis(double v_out[6], double m_in[6][6], double v_in[6]) {
-    v_out[0] = m_in[0][0] * v_in[0] + m_in[0][1] * v_in[1] + m_in[0][2] * v_in[2] +
-               m_in[0][3] * v_in[3]
+    v_out[0] = m_in[0][0] * v_in[0] + m_in[0][1] * v_in[1] + m_in[0][2] * v_in[2] + m_in[0][3] * v_in[3]
                + m_in[0][4] * v_in[4] +
                m_in[0][5] * v_in[5];
-    v_out[1] = m_in[1][0] * v_in[0] + m_in[1][1] * v_in[1] + m_in[1][2] * v_in[2] +
-               m_in[1][3] * v_in[3]
+    v_out[1] = m_in[1][0] * v_in[0] + m_in[1][1] * v_in[1] + m_in[1][2] * v_in[2] + m_in[1][3] * v_in[3]
                + m_in[1][4] * v_in[4] +
                m_in[1][5] * v_in[5];
-    v_out[2] = m_in[2][0] * v_in[0] + m_in[2][1] * v_in[1] + m_in[2][2] * v_in[2] +
-               m_in[2][3] * v_in[3]
+    v_out[2] = m_in[2][0] * v_in[0] + m_in[2][1] * v_in[1] + m_in[2][2] * v_in[2] + m_in[2][3] * v_in[3]
                + m_in[2][4] * v_in[4] +
                m_in[2][5] * v_in[5];
-    v_out[3] = m_in[3][0] * v_in[0] + m_in[3][1] * v_in[1] + m_in[3][2] * v_in[2] +
-               m_in[3][3] * v_in[3]
+    v_out[3] = m_in[3][0] * v_in[0] + m_in[3][1] * v_in[1] + m_in[3][2] * v_in[2] + m_in[3][3] * v_in[3]
                + m_in[3][4] * v_in[4] +
                m_in[3][5] * v_in[5];
-    v_out[4] = m_in[4][0] * v_in[0] + m_in[4][1] * v_in[1] + m_in[4][2] * v_in[2] +
-               m_in[4][3] * v_in[3]
+    v_out[4] = m_in[4][0] * v_in[0] + m_in[4][1] * v_in[1] + m_in[4][2] * v_in[2] + m_in[4][3] * v_in[3]
                + m_in[4][4] * v_in[4] +
                m_in[4][5] * v_in[5];
-    v_out[5] = m_in[5][0] * v_in[0] + m_in[5][1] * v_in[1] + m_in[5][2] * v_in[2] +
-               m_in[5][3] * v_in[3]
+    v_out[5] = m_in[5][0] * v_in[0] + m_in[5][1] * v_in[1] + m_in[5][2] * v_in[2] + m_in[5][3] * v_in[3]
                + m_in[5][4] * v_in[4] +
                m_in[5][5] * v_in[5];
     return 0;
@@ -633,12 +618,10 @@ int cart_to_equin(double *af, double *ag, double *lam, double *n, double *chi,
     //rvec in km but then in sinf and cosf a is in km so need to to keep km here too
     v_dot(&y, rvec, g);
     double b = 1. / (1 + sqrt(1 - (*ag) * (*ag) - (*af) * (*af)));
-    double sinf = (*ag) + ((1 - (*ag) * (*ag) * b) * y - (*ag) * (*af) * b * x) /
-                  (a * sqrt(1 -
-                            (*ag) * (*ag) - (*af) * (*af)));
-    double cosf = (*af) + ((1 - (*af) * (*af) * b) * x - (*ag) * (*af) * b * y) /
-                  (a * sqrt(1 -
-                            (*ag) * (*ag) - (*af) * (*af)));
+    double sinf = (*ag) + ((1 - (*ag) * (*ag) * b) * y - (*ag) * (*af) * b * x) / (a * sqrt(1 -
+                  (*ag) * (*ag) - (*af) * (*af)));
+    double cosf = (*af) + ((1 - (*af) * (*af) * b) * x - (*ag) * (*af) * b * y) / (a * sqrt(1 -
+                  (*ag) * (*ag) - (*af) * (*af)));
     double F = atan2(sinf, cosf);
     *lam = F + (*ag) * cosf - (*af) * sinf;
 
@@ -663,8 +646,7 @@ int equin_to_cart(double rvec[3], double vvec[3], double af, double ag,
     iter = 0;
     //printf("XXXXXXXXXXX error[%d]: %.2f | %f %f %f %f %f %f %f %f\n", iter, err * 100, af, ag, lam, n, chi, psi, mu, fr);
     while(err > err_max) {
-        fiplus = fi - (fi + ag * cos(fi) - af * sin(fi) - lam) / (1 - ag * sin(
-                     fi) - af * cos(fi));
+        fiplus = fi - (fi + ag * cos(fi) - af * sin(fi) - lam) / (1 - ag * sin(fi) - af * cos(fi));
         fi = fiplus;
         lamguess = fi + ag * cos(fi) - af * sin(fi);
         err = fabs((lam - lguess) / lam);
@@ -696,12 +678,10 @@ int equin_to_cart(double rvec[3], double vvec[3], double af, double ag,
     double B = sqrt(1 - ag * ag - af * af);
     double b = 1 / (1 + B);
 
-    double sinl = ((1 - af * af * b) * sin(F) + ag * af * b * cos(F) - ag) /
-                  (1 - ag * sin(
-                       F) - af * cos(F));
-    double cosl = ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af) /
-                  (1 - ag * sin(
-                       F) - af * cos(F));
+    double sinl = ((1 - af * af * b) * sin(F) + ag * af * b * cos(F) - ag) / (1 - ag * sin(
+                           F) - af * cos(F));
+    double cosl = ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af) / (1 - ag * sin(
+                           F) - af * cos(F));
 
 
 
@@ -724,8 +704,7 @@ int equin_to_cart(double rvec[3], double vvec[3], double af, double ag,
 }
 
 //derivative matrix equinoctial elements to cartesian position velocity(1)
-equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
-              double n, double chi,
+equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam, double n, double chi,
               double psi, double mu, double fr) {
 
     double rvec[3], vvec[3];
@@ -743,8 +722,7 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     iter = 0;
     ///printf("error[%d]: %.2f\n", iter, err * 100);
     while(err > err_max) {
-        fiplus = fi - (fi + ag * cos(fi) - af * sin(fi) - lam) / (1 - ag * sin(
-                     fi) - af * cos(fi));
+        fiplus = fi - (fi + ag * cos(fi) - af * sin(fi) - lam) / (1 - ag * sin(fi) - af * cos(fi));
         fi = fiplus;
         lamguess = fi + ag * cos(fi) - af * sin(fi);
         err = fabs((lam - lamguess) / lam);
@@ -776,12 +754,10 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     double B = sqrt(1 - ag * ag - af * af);
     double b = 1 / (1 + B);
 
-    double sinl = ((1 - af * af * b) * sin(F) + ag * af * b * cos(F) - ag) /
-                  (1 - ag * sin(
-                       F) - af * cos(F));
-    double cosl = ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af) /
-                  (1 - ag * sin(
-                       F) - af * cos(F));
+    double sinl = ((1 - af * af * b) * sin(F) + ag * af * b * cos(F) - ag) / (1 - ag * sin(
+                           F) - af * cos(F));
+    double cosl = ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af) / (1 - ag * sin(
+                           F) - af * cos(F));
 
 
 
@@ -832,14 +808,10 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     double dydag = -af * ydot / (n * (1 + B)) - a * x * ydot / (A * B) - a;
     double r3 = r * r * r;
     double a3 = a * a * a;
-    double dxdotdaf = a * xdot * ydot / (A * B) - A / r3 * (a * ag * x /
-                      (1 + B) + x * y / B);
-    double dydotdaf = -a * xdot * xdot / (A * B) - A / r3 * (a * ag * y /
-                      (1 + B) - x * x / B);
-    double dxdotdag = a * ydot * ydot / (A * B) + A / r3 * (a * af * x /
-                      (1 + B) - y * y / B);
-    double dydotdag = -a * xdot * ydot / (A * B) + A / r3 * (a * af * y /
-                      (1 + B) + x * y / B);
+    double dxdotdaf = a * xdot * ydot / (A * B) - A / r3 * (a * ag * x / (1 + B) + x * y / B);
+    double dydotdaf = -a * xdot * xdot / (A * B) - A / r3 * (a * ag * y / (1 + B) - x * x / B);
+    double dxdotdag = a * ydot * ydot / (A * B) + A / r3 * (a * af * x / (1 + B) - y * y / B);
+    double dydotdag = -a * xdot * ydot / (A * B) + A / r3 * (a * af * y / (1 + B) + x * y / B);
 
     /*
      * // if the convention is to use derivative with respect to
@@ -920,28 +892,22 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     T_equin_to_cart[3][0] = vx / (3 * n);
     T_equin_to_cart[3][1] = dxdotdaf * fe + dydotdaf * ge;
     T_equin_to_cart[3][2] = dxdotdag * fe + dydotdag * ge;
-    T_equin_to_cart[3][3] = 2 * (fr * psi * (ydot * fe - xdot * ge) - xdot * we) /
-                            C;
-    T_equin_to_cart[3][4] = 2 * fr * (chi * (xdot * ge - ydot * fe) + ydot * we) /
-                            C;
+    T_equin_to_cart[3][3] = 2 * (fr * psi * (ydot * fe - xdot * ge) - xdot * we) / C;
+    T_equin_to_cart[3][4] = 2 * fr * (chi * (xdot * ge - ydot * fe) + ydot * we) / C;
     T_equin_to_cart[3][5] = -n * a3 * rx / r3;
     //drx / d
     T_equin_to_cart[4][0] = vy / (3 * n);
     T_equin_to_cart[4][1] = dxdotdaf * fq + dydotdaf * gq;
     T_equin_to_cart[4][2] = dxdotdag * fq + dydotdag * gq;
-    T_equin_to_cart[4][3] = 2 * (fr * psi * (ydot * fq - xdot * gq) - xdot * wq) /
-                            C;
-    T_equin_to_cart[4][4] = 2 * fr * (chi * (xdot * gq - ydot * fq) + ydot * wq) /
-                            C;
+    T_equin_to_cart[4][3] = 2 * (fr * psi * (ydot * fq - xdot * gq) - xdot * wq) / C;
+    T_equin_to_cart[4][4] = 2 * fr * (chi * (xdot * gq - ydot * fq) + ydot * wq) / C;
     T_equin_to_cart[4][5] = -n * a3 * ry / r3;
     //drx / d
     T_equin_to_cart[5][0] = vz / (3 * n);
     T_equin_to_cart[5][1] = dxdotdaf * fw + dydotdaf * gw;
     T_equin_to_cart[5][2] = dxdotdag * fw + dydotdag * gw;
-    T_equin_to_cart[5][3] = 2 * (fr * psi * (ydot * fw - xdot * gw) - xdot * ww) /
-                            C;
-    T_equin_to_cart[5][4] = 2 * fr * (chi * (xdot * gw - ydot * fw) + ydot * ww) /
-                            C;
+    T_equin_to_cart[5][3] = 2 * (fr * psi * (ydot * fw - xdot * gw) - xdot * ww) / C;
+    T_equin_to_cart[5][4] = 2 * fr * (chi * (xdot * gw - ydot * fw) + ydot * ww) / C;
     T_equin_to_cart[5][5] = -n * a3 * rz / r3;
     //drx / d
 
@@ -950,8 +916,8 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
 
 //derivative matrix classical orbital elements to cartesian position velocity(page 28 - 31 of http://citeseerx.ist.psu.edu / viewdoc / download ? doi = 10.1 .1 .112 .5780 & rep = rep1 & type = pdf)
 int compute_T_deriv_class_to_cart(double T_class_to_cart[6][6], double a,
-                                  double e, double i, double big_omega, double small_omega,
-                                  double nu, double mu) {
+                                      double e, double i, double big_omega, double small_omega,
+                                      double nu, double mu) {
     //o i raan, w is arg_per, nu is true ano
     // a = 6860.7631 * 1000;
     e = 0.0010640;
@@ -965,87 +931,66 @@ int compute_T_deriv_class_to_cart(double T_class_to_cart[6][6], double a,
     //it's not ri, just a notation
     double c1 = (1 - e * e) / (1 + e * cos(nu));
 
-    double c2 = -(2 * a * e + a * cos(nu) + a * e * e * cos(nu)) / ((1 + e * cos(
-                    nu)) * (1 + e * cos(
-                                nu)));
+    double c2 = -(2 * a * e + a * cos(nu) + a * e * e * cos(nu)) / ((1 + e * cos(nu)) * (1 + e * cos(
+                         nu)));
     double c3 = c1 / (1 + e * cos(nu));
-    ri[0] = c1 * (cos(nu) * (cos(big_omega) * cos(small_omega) - sin(
-                                 big_omega) * sin(
-                                 small_omega) * cos(i)) - sin(nu) * (cos(big_omega) * sin(small_omega) +
-                                         sin(big_omega) * cos(small_omega) * cos(i)));
-    ri[1] = c2 * (cos(nu) * (cos(big_omega) * cos(small_omega) - sin(
-                                 big_omega) * sin(
-                                 small_omega) * cos(i)) - sin(
-                      nu) * (cos(big_omega) * sin(small_omega) + sin(big_omega) * cos(
-                                 small_omega) * cos(i)));
-    ri[2] = a * c1 * sin(big_omega) * sin(i) * (cos(nu) * sin(small_omega) + sin(
-                nu) * cos(
-                small_omega));
+    ri[0] = c1 * (cos(nu) * (cos(big_omega) * cos(small_omega) - sin(big_omega) * sin(
+            small_omega) * cos(i)) - sin(nu) * (cos(big_omega) * sin(small_omega) +
+            sin(big_omega) * cos(small_omega) * cos(i)));
+    ri[1] = c2 * (cos(nu) * (cos(big_omega) * cos(small_omega) - sin(big_omega) * sin(
+            small_omega) * cos(i)) - sin(
+                                  nu) * (cos(big_omega) * sin(small_omega) + sin(big_omega) * cos(small_omega) * cos(i)));
+    ri[2] = a * c1 * sin(big_omega) * sin(i) * (cos(nu) * sin(small_omega) + sin(nu) * cos(
+                            small_omega));
     ri[3] = a * c1 * (-cos(nu) * sin(big_omega) * cos(small_omega) - cos(nu) * cos(
-                          big_omega) * sin(
-                          small_omega) * cos(i) + sin(nu) * sin(big_omega) * sin(small_omega) - sin(
-                          nu) * cos(
-                          big_omega) * cos(small_omega) * cos(i));
-    ri[4] = a * c1 * (-cos(nu) * cos(big_omega) * sin(small_omega) - cos(nu) * sin(
-                          big_omega) * cos(
-                          small_omega) * cos(i) - sin(nu) * cos(big_omega) * cos(small_omega) + sin(
-                          nu) * sin(
-                          big_omega) * sin(small_omega) * cos(i));
-    ri[5] = a * c3 * (-sin(nu) * (cos(big_omega) * cos(small_omega) - sin(
                                       big_omega) * sin(
+                                      small_omega) * cos(i) + sin(nu) * sin(big_omega) * sin(small_omega) - sin(nu) * cos(
+                                      big_omega) * cos(small_omega) * cos(i));
+    ri[4] = a * c1 * (-cos(nu) * cos(big_omega) * sin(small_omega) - cos(nu) * sin(
+                                      big_omega) * cos(
+                                      small_omega) * cos(i) - sin(nu) * cos(big_omega) * cos(small_omega) + sin(nu) * sin(
+                                      big_omega) * sin(small_omega) * cos(i));
+    ri[5] = a * c3 * (-sin(nu) * (cos(big_omega) * cos(small_omega) - sin(big_omega) * sin(
                                       small_omega) * cos(i)) +
-                      (e + cos(nu)) * (-cos(big_omega) * sin(small_omega) - sin(big_omega) * cos(
-                                           small_omega) * cos(i)));
+                                  (e + cos(nu)) * (-cos(big_omega) * sin(small_omega) - sin(big_omega) * cos(small_omega) * cos(i)));
 
     double rj[6];
     //it's not rj, just a notation
     double c4 = sqrt(mu / (a * (1 - e * e)));
     rj[0] = c1 * (cos(nu) * sin(big_omega) * cos(small_omega) + cos(nu) * cos(
-                      big_omega) * sin(small_omega) * cos(
-                      i) - sin(nu) * sin(big_omega) * sin(small_omega) + sin(nu) * cos(
-                      big_omega) * cos(
-                      small_omega) * cos(i));
-    rj[1] = c2 * (cos(nu) * (sin(big_omega) * cos(small_omega) + cos(
-                                 big_omega) * sin(
-                                 small_omega) * cos(i)) + sin(
-                      nu) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(
-                                 small_omega) * cos(i)));
-    rj[2] = -a * c1 * cos(big_omega) * sin(i) * (cos(nu) * sin(small_omega) + sin(
-                nu) * cos(
-                small_omega));
+                                  big_omega) * sin(small_omega) * cos(
+                                  i) - sin(nu) * sin(big_omega) * sin(small_omega) + sin(nu) * cos(big_omega) * cos(
+                                  small_omega) * cos(i));
+    rj[1] = c2 * (cos(nu) * (sin(big_omega) * cos(small_omega) + cos(big_omega) * sin(
+            small_omega) * cos(i)) + sin(
+                                  nu) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(small_omega) * cos(i)));
+    rj[2] = -a * c1 * cos(big_omega) * sin(i) * (cos(nu) * sin(small_omega) + sin(nu) * cos(
+                            small_omega));
     rj[3] = a * c1 * (cos(nu) * cos(big_omega) * cos(small_omega) - cos(nu) * sin(
-                          big_omega) * sin(
-                          small_omega) * cos(i) - sin(nu) * cos(big_omega) * sin(small_omega) - sin(
-                          nu) * sin(
-                          big_omega) * cos(small_omega) * cos(i));
+                                      big_omega) * sin(
+                                      small_omega) * cos(i) - sin(nu) * cos(big_omega) * sin(small_omega) - sin(nu) * sin(
+                                      big_omega) * cos(small_omega) * cos(i));
     //line below from Vallado 2015
     //rj[3] = a * c1 * (cos(nu) * (sin(big_omega) * cos(small_omega) + cos(big_omega) * sin(small_omega) * cos(i)) + sin(nu) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(small_omega) * cos(i)));
     rj[4] = a * c1 * (-cos(nu) * sin(big_omega) * sin(small_omega) + cos(nu) * cos(
-                          big_omega) * cos(
-                          small_omega) * cos(i) - sin(nu) * sin(big_omega) * cos(small_omega) - sin(
-                          nu) * cos(
-                          big_omega) * sin(small_omega) * cos(i));
-    rj[5] = a * c3 * (-sin(nu) * (sin(big_omega) * cos(small_omega) + cos(
-                                      big_omega) * sin(
+                                      big_omega) * cos(
+                                      small_omega) * cos(i) - sin(nu) * sin(big_omega) * cos(small_omega) - sin(nu) * cos(
+                                      big_omega) * sin(small_omega) * cos(i));
+    rj[5] = a * c3 * (-sin(nu) * (sin(big_omega) * cos(small_omega) + cos(big_omega) * sin(
                                       small_omega) * cos(i)) +
-                      (e + cos(nu)) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(
-                                           small_omega) * cos(i)));
+                                  (e + cos(nu)) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(small_omega) * cos(i)));
 
     double rk[6];
     //it's not rk, just a notation
-    rk[0] = c1 * (cos(nu) * sin(small_omega) * sin(i) + sin(nu) * cos(
-                      small_omega) * sin(
-                      i));
-    rk[1] = c2 * (cos(nu) * sin(small_omega) * sin(i) + sin(nu) * cos(
-                      small_omega) * sin(
-                      i));
-    rk[2] = a * c1 * cos(i) * (cos(nu) * sin(small_omega) + sin(nu) * cos(
-                                   small_omega));
+    rk[0] = c1 * (cos(nu) * sin(small_omega) * sin(i) + sin(nu) * cos(small_omega) * sin(
+                                  i));
+    rk[1] = c2 * (cos(nu) * sin(small_omega) * sin(i) + sin(nu) * cos(small_omega) * sin(
+                                  i));
+    rk[2] = a * c1 * cos(i) * (cos(nu) * sin(small_omega) + sin(nu) * cos(small_omega));
     rk[3] = 0;
-    rk[4] = a * c1 * sin(i) * (cos(nu) * cos(small_omega) - sin(nu) * sin(
-                                   small_omega));
+    rk[4] = a * c1 * sin(i) * (cos(nu) * cos(small_omega) - sin(nu) * sin(small_omega));
     rk[5] = a * c3 * (-sin(nu) * sin(small_omega) * sin(i) + (e + cos(nu)) * cos(
-                          small_omega) * sin(i));
+                                      small_omega) * sin(i));
 
 
     double vi[6];
@@ -1053,90 +998,73 @@ int compute_T_deriv_class_to_cart(double T_class_to_cart[6][6], double a,
     c3 = sqrt(mu / (a * (1 - e * e)));
     vi[0] = 1 / (2 * a) * c3 * (sin(nu) * (cos(big_omega) * cos(small_omega) - sin(
             big_omega) * sin(
-                    small_omega) * cos(i)) - (e + cos(nu)) * (-cos(big_omega) * sin(
-                                    small_omega) - sin(big_omega) * cos(
-                                    small_omega) * cos(i)));
+                    small_omega) * cos(i)) - (e + cos(nu)) * (-cos(big_omega) * sin(small_omega) - sin(big_omega) * cos(
+                            small_omega) * cos(i)));
     //!!!!looks like there s a typo in the equation online cos((w * cos(i)))
-    vi[1] = 1 / (1 - e * e) * c3 * (-e * sin(nu) * (cos(big_omega) * cos(
-                                        small_omega) - sin(
-                                        big_omega) * sin(
-                                        small_omega) * cos(i)) + (1 + e * cos(nu)) * (-cos(big_omega) * sin(
-                                                small_omega) - sin(
-                                                        big_omega) * cos(small_omega) * cos(
-                                                                i)));
+    vi[1] = 1 / (1 - e * e) * c3 * (-e * sin(nu) * (cos(big_omega) * cos(small_omega) - sin(
+                            big_omega) * sin(
+                            small_omega) * cos(i)) + (1 + e * cos(nu)) * (-cos(big_omega) * sin(small_omega) - sin(
+                                        big_omega) * cos(small_omega) * cos(
+                                        i)));
     //!!!!looks like there s a typo in the equation online cos((w * cos(i)))
     vi[2] = c3 * sin(big_omega) * (sin(nu) * sin(small_omega) * sin(i) + (e + cos(
-                                       nu)) * cos(small_omega) * sin(i));
+                            nu)) * cos(small_omega) * sin(i));
     vi[3] = c3 * (sin(nu) * sin(big_omega) * cos(small_omega) + sin(nu) * cos(
-                      big_omega) * sin(small_omega) * cos(
-                      i) + (e + cos(nu)) * (sin(big_omega) * sin(small_omega) - cos(big_omega) * cos(
-                              small_omega) * cos(
-                                      i)));
+                                  big_omega) * sin(small_omega) * cos(
+                                  i) + (e + cos(nu)) * (sin(big_omega) * sin(small_omega) - cos(big_omega) * cos(small_omega) * cos(
+                                          i)));
     vi[4] = c3 * (sin(nu) * cos(big_omega) * sin(small_omega) + sin(nu) * sin(
-                      big_omega) * cos(small_omega) * cos(
-                      i) + (e + cos(nu)) * (-cos(big_omega) * cos(small_omega) + sin(big_omega) * sin(
-                              small_omega) * cos(
-                                      i)));
-    vi[5] = c3 * (-cos(nu) * (cos(big_omega) * cos(small_omega) - sin(
-                                  big_omega) * sin(
-                                  small_omega) * cos(i)) - sin(
-                      nu) * (-cos(big_omega) * sin(small_omega) - sin(big_omega) * cos(
-                                 small_omega) * cos(i)));
+                                  big_omega) * cos(small_omega) * cos(
+                                  i) + (e + cos(nu)) * (-cos(big_omega) * cos(small_omega) + sin(big_omega) * sin(small_omega) * cos(
+                                          i)));
+    vi[5] = c3 * (-cos(nu) * (cos(big_omega) * cos(small_omega) - sin(big_omega) * sin(
+            small_omega) * cos(i)) - sin(
+                                  nu) * (-cos(big_omega) * sin(small_omega) - sin(big_omega) * cos(small_omega) * cos(i)));
 
     double vj[6];
     //it's not vj, just a notation
     vj[0] = 1 / (2 * a) * c3 * (sin(nu) * (sin(big_omega) * cos(small_omega) + cos(
             big_omega) * sin(
-                    small_omega) * cos(i)) - (e + cos(nu)) * (-sin(big_omega) * sin(
-                                    small_omega) + cos(big_omega) * cos(
-                                    small_omega) * cos(i)));
+                    small_omega) * cos(i)) - (e + cos(nu)) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(
+                            small_omega) * cos(i)));
     //!!!!looks like there s a typo in the equation online cos((w * cos(i)))
-    vj[1] = 1 / (1 - e * e) * c3 * (-e * sin(nu) * (sin(big_omega) * cos(
-                                        small_omega) + cos(
-                                        big_omega) * sin(
-                                        small_omega) * cos(i)) + (1 + e * cos(nu)) * (-sin(big_omega) * sin(
-                                                small_omega) + cos(
-                                                        big_omega) * cos(small_omega) * cos(
-                                                                i)));
+    vj[1] = 1 / (1 - e * e) * c3 * (-e * sin(nu) * (sin(big_omega) * cos(small_omega) + cos(
+                            big_omega) * sin(
+                            small_omega) * cos(i)) + (1 + e * cos(nu)) * (-sin(big_omega) * sin(small_omega) + cos(
+                                        big_omega) * cos(small_omega) * cos(
+                                        i)));
     //!!!!looks like there s a typo in the equation online cos((w * cos(i)))
     vj[2] = c3 * (sin(nu) * cos(big_omega) * sin(small_omega) * sin(i) - (e + cos(
-                      nu)) * cos(big_omega) * cos(
-                      small_omega) * sin(i));
+                                  nu)) * cos(big_omega) * cos(
+                                  small_omega) * sin(i));
     vj[3] = c3 * (-sin(nu) * cos(big_omega) * cos(small_omega) + sin(nu) * sin(
-                      big_omega) * sin(small_omega) * cos(
-                      i) + (e + cos(nu)) * (-cos(big_omega) * sin(small_omega) - sin(big_omega) * cos(
-                              small_omega) * cos(
-                                      i)));
+                                  big_omega) * sin(small_omega) * cos(
+                                  i) + (e + cos(nu)) * (-cos(big_omega) * sin(small_omega) - sin(big_omega) * cos(small_omega) * cos(
+                                          i)));
     vj[4] = c3 * (sin(nu) * sin(big_omega) * sin(small_omega) - sin(nu) * cos(
-                      big_omega) * cos(small_omega) * cos(
-                      i) + (e + cos(nu)) * (-sin(big_omega) * cos(small_omega) - cos(big_omega) * sin(
-                              small_omega) * cos(
-                                      i)));
-    vj[5] = c3 * (-cos(nu) * (sin(big_omega) * cos(small_omega) + cos(
-                                  big_omega) * sin(
-                                  small_omega) * cos(i)) - sin(
-                      nu) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(
-                                 small_omega) * cos(i)));
+                                  big_omega) * cos(small_omega) * cos(
+                                  i) + (e + cos(nu)) * (-sin(big_omega) * cos(small_omega) - cos(big_omega) * sin(small_omega) * cos(
+                                          i)));
+    vj[5] = c3 * (-cos(nu) * (sin(big_omega) * cos(small_omega) + cos(big_omega) * sin(
+            small_omega) * cos(i)) - sin(
+                                  nu) * (-sin(big_omega) * sin(small_omega) + cos(big_omega) * cos(small_omega) * cos(i)));
 
 
     double vk[6];
     //it 's not vk, just a notation
-    vk[0] = 1 / (2 * a) * c3 * (sin(nu) * sin(small_omega) * sin(i) - (e + cos(
-                                    nu)) * cos(
-                                    small_omega) * sin(i));
-    vk[1] = 1 / (1 - e * e) * c3 * (-e * sin(nu) * sin(small_omega) * sin(i) +
-                                    (1 + e * cos(
-                                         nu)) * cos(
-                                        small_omega) * sin(i));
+    vk[0] = 1 / (2 * a) * c3 * (sin(nu) * sin(small_omega) * sin(i) - (e + cos(nu)) * cos(
+            small_omega) * sin(i));
+    vk[1] = 1 / (1 - e * e) * c3 * (-e * sin(nu) * sin(small_omega) * sin(i) + (1 + e * cos(
+                            nu)) * cos(
+                            small_omega) * sin(i));
     //!!!!looks like there s a typo in the equation online cos((w * cos(i)))
     vk[2] = c3 * (-sin(nu) * sin(small_omega) * cos(i) + (e + cos(nu)) * cos(
-                      small_omega) * cos(i));
+                                  small_omega) * cos(i));
     vk[3] = 0;
     vk[4] = c3 * (-sin(nu) * cos(small_omega) * sin(i) - (e + cos(nu)) * (sin(
-                      small_omega) * sin(i)));
-    vk[5] = c3 * (-cos(nu) * sin(small_omega) * sin(i) - sin(nu) * cos(
-                      small_omega) * sin(
-                      i));
+                                  small_omega) * sin(i)));
+    vk[5] = c3 * (-cos(nu) * sin(small_omega) * sin(i) - sin(nu) * cos(small_omega) * sin(
+                                  i));
 
 
     /* v_print6(ri,"ri");  v_print6(rj,"rj");  v_print6(rk,"rk"); */
@@ -1163,9 +1091,8 @@ int compute_T_inrtl_2_ntw(double T_inrtl_2_ntw[3][3],
     double t[3], w[3], n[3];
     //t = in - track;
     w = cross - track;
-    n = vector in the orbital plane normal to the velocity(directed outwards from
-            the Earth)
-        int col;
+    n = vector in the orbital plane normal to the velocity(directed outwards from the Earth)
+    int col;
 
     //Algorithm
     /*
@@ -1198,8 +1125,8 @@ int compute_T_inrtl_2_ntw(double T_inrtl_2_ntw[3][3],
 //  important: contraritly to compute_T_inrtl_2_ntw, the outputs is ntw(twn in compute_T_inrtl_2_ntw).this is to compare to Vallado matlab 's script covct2o2.m (in Code/cygnss/collision/vallado/matlab or email from Vallado o July 9, 2018)
 //  source: Vallado matlab 's script covct2o2.m (in Code/cygnss/collision/vallado/matlab or email from Vallado o July 9, 2018)
 int  compute_T_inrtl_2_ntw_6by6(double T_inrtl_2_ntw_6by6[6][6],
-                                double r[3],
-                                double v[3]) {
+                                   double r[3],
+                                   double v[3]) {
     //Declarations
     double t [3], w[3], n[3];
     //t = in - track;
@@ -1353,7 +1280,7 @@ int compute_T_inrtl_2_lvlh(double T_inrtl_2_lvlh[3][3],
 //             -the y vector is the vector in the plane OHS and in the direction of the Sun
 //             -the x vector completes the orthogonal basis
 int compute_T_inrtl_2_earth_pres_frame(double T_inrtl_2_earth_pres_frame[3][3],
-                                       double r[3], double et) {
+        double r[3], double et) {
     //Declarations
     double xep[3], yep[3], zep[3];
     //"ep": Earth Pressure frame->coordiantes of the vectors of the EP frame in the inertial refererence frame
@@ -1443,7 +1370,7 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
     //the quaternion code was made to read the quaternion files of swarm at https:              //swarm - diss.eo.esa.int /
 #swarm%2FLevel1b%2FEntire_mission_data%2FSTRxATT
     double *p = malloc(sizeof(double)), *r = malloc(sizeof(double)),
-            *y = malloc(sizeof(double));
+                    *y = malloc(sizeof(double));
     if(file_is_quaternion == 1) {
         //if attitude is set using quaternions
         // the quaternion I get from swarm are the rotation from sc to ecef so we need to convert from ecef to lvlh now
@@ -1624,9 +1551,8 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
             /************************************** BLOCK A: UNCOMMENT BELOW TO SET X_BODY PERPENDICULAR TO NADIR **********************************/
             // //IMPORTANT: IF YOU UNCOMMENT THIS BLOCK THEN COMMENT BLOCK B
             // Sun pointed gives the direction of z_body.The sc can still yaw around this vector sc to Sun.By default, we assume that the yaw angle is so that the x_body is perpendicular to nadir.In other words, x_body is the cross product of nadir with sat_to_sun vector(both expressed in lvlh coordinates)
-            double lvlh_z_in_lvlh[3], new_e_x_body_in_lvlh[3],
-                   new_e_y_body_in_lvlh_normalized[3],
-                   new_e_x_body_in_lvlh_normalized[3];
+            double lvlh_z_in_lvlh[3], new_e_x_body_in_lvlh[3], new_e_y_body_in_lvlh_normalized[3],
+                        new_e_x_body_in_lvlh_normalized[3];
             lvlh_z_in_lvlh[0] = 0;
             lvlh_z_in_lvlh[1] = 0;
             lvlh_z_in_lvlh[2] = 1;
@@ -1641,24 +1567,21 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
             ////!!!!!!!BELOW IS TO ROTATE X_BODY BY 10 DEGREES IN THE PLANE PERPENDICULAR TO SAT_TO_SUN VECTOR.THEN X_BODY IS 10 DEGREES FROM BEING PERPENDICULAR TO NADIR(BUT STILL PERPENDICULAR TO Z_BODY(WHICH IS EQUAL TO SAT_TO_SUN VECTOR)).PARDON THE LONG NAMES
             // //!!!!!!THEREFORE, COMMENT THE BLOCK BELOW(UNLESS YOU KNOW WHAT YOU ARE DOING)
             double new_e_x_body_in_lvlh_normalized_rotated_10_degrees[3],
-                   new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_new_e_x_body_in_lvlh_normalized[3],
-                   new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_new_e_y_body_in_lvlh_normalized[3],
-                   new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[3],
-                   new_e_x_body_in_lvlh_normalized_rotated_10_degrees_temp[3],
-                   new_e_x_body_in_lvlh_normalized_rotated_10_degrees_normalized[3];
+                        new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_new_e_x_body_in_lvlh_normalized[3],
+                        new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_new_e_y_body_in_lvlh_normalized[3],
+                        new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[3],
+                        new_e_x_body_in_lvlh_normalized_rotated_10_degrees_temp[3],
+                        new_e_x_body_in_lvlh_normalized_rotated_10_degrees_normalized[3];
             v_scale(new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_new_e_x_body_in_lvlh_normalized,
                     new_e_x_body_in_lvlh_normalized, cos(10. * DEG2RAD));
             v_scale(new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_new_e_y_body_in_lvlh_normalized,
                     new_e_y_body_in_lvlh_normalized, sin(10. * DEG2RAD));
-            new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[0]
-                =
-                    0;
-            new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[1]
-                =
-                    0;
-            new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[2]
-                =
-                    0;
+            new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[0] =
+                0;
+            new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[1] =
+                0;
+            new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_e_z_body_in_lvlh_normalized[2] =
+                0;
 
             v_add(new_e_x_body_in_lvlh_normalized_rotated_10_degrees_temp,
                   new_e_x_body_in_lvlh_normalized_rotated_10_degrees_component_along_new_e_x_body_in_lvlh_normalized,
@@ -1803,21 +1726,18 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
 }
 
 //https: //gssc.esa.int /navipedia / index.php / Transformations_between_ECEF_and_ENU_coordinates
-int compute_T_enu_to_ecef(double
-                          T_enu_to_ecef[3][3], //out:rotation matrix ENU to ECEF
+int compute_T_enu_to_ecef(double T_enu_to_ecef[3][3], //out:rotation matrix ENU to ECEF
                           double geodetic_latitude, //in:geodetic latitude of the place at the surface of the Earth
                           double longitude, //in:longitude of the place at the surface of the Earth
                           double flattening)//in:flattening parameter
 {
     /* Declarations */
-    double T_enu_to_east_north_center_earth_to_local[3][3],
-           T_east_north_center_earth_to_local_to_ecef[3][3];
+    double T_enu_to_east_north_center_earth_to_local[3][3], T_east_north_center_earth_to_local_to_ecef[3][3];
     double geocentric_latitude;
 
     /* Algorithm */
     //Compute the geocentric latitude(equation 3.11 of Vallado)
-    geocentric_latitude = atan((1 - flattening) * (1 - flattening) * tan(
-                                   geodetic_latitude));
+    geocentric_latitude = atan((1 - flattening) * (1 - flattening) * tan(geodetic_latitude));
 
     //Compute the rotation matrix from ENU to the same frame as ENU except that we rotate the ENU of an angle(geodetic_latitude - geocentric_latitude) around the East axis
     double rot_angle;
@@ -1835,22 +1755,17 @@ int compute_T_enu_to_ecef(double
 
     //Compute the rotation matrix from the local east_north_center_earth_to_local of the place at the surface of the earth to ECEF.This is different from ENU because of the oblateness of the Earth.This frame uses the geocentric latitude(because it goes through the center of the Earth, like the ECEF).ENU uses the geodetic latitude.Therefore, to convert from ENU to ECEF, first use compute_T_enu_to_east_north_center_earth_to_local then compute_t_east_north_center_earth_to_local_to_ecef
     T_east_north_center_earth_to_local_to_ecef[0][0] = -sin(longitude);
-    T_east_north_center_earth_to_local_to_ecef[0][1] = -sin(
-                geocentric_latitude) * cos(longitude);
-    T_east_north_center_earth_to_local_to_ecef[0][2] = cos(geocentric_latitude) *
-            cos(longitude);
+    T_east_north_center_earth_to_local_to_ecef[0][1] = -sin(geocentric_latitude) * cos(longitude);
+    T_east_north_center_earth_to_local_to_ecef[0][2] = cos(geocentric_latitude) * cos(longitude);
     T_east_north_center_earth_to_local_to_ecef[1][0] = cos(longitude);
-    T_east_north_center_earth_to_local_to_ecef[1][1] = -sin(
-                geocentric_latitude) * sin(longitude);
-    T_east_north_center_earth_to_local_to_ecef[1][2] = cos(geocentric_latitude) *
-            sin(longitude);
+    T_east_north_center_earth_to_local_to_ecef[1][1] = -sin(geocentric_latitude) * sin(longitude);
+    T_east_north_center_earth_to_local_to_ecef[1][2] = cos(geocentric_latitude) * sin(longitude);
     T_east_north_center_earth_to_local_to_ecef[2][0] = 0;
     T_east_north_center_earth_to_local_to_ecef[2][1] = cos(geocentric_latitude);
     T_east_north_center_earth_to_local_to_ecef[2][2] = sin(geocentric_latitude);
 
     //Rotation matrix from ENU to ECEF: first rotate from ENU to east_north_center_earth_to_local.Then rotation from east_north_center_earth_to_local to ECEF
-    m_x_m(T_enu_to_ecef, T_east_north_center_earth_to_local_to_ecef,
-          T_enu_to_east_north_center_earth_to_local);
+    m_x_m(T_enu_to_ecef, T_east_north_center_earth_to_local_to_ecef, T_enu_to_east_north_center_earth_to_local);
 
     return 0;
 }
