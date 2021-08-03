@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D05175E017EA1A18AB2E33F75E0E1D118F825968",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D05175E017EA1A18AB2E33F75E0E1D118F825968" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AD555CB8-73F6-4FB0-AD00-7C05FD3D9E52",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D05175E017EA1A18AB2E33F75E0E1D118F825968" : "spock-1sl\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "spock_SL",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "spock_SL\/spock_SL.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/splowitz1\/spock-1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D05175E017EA1A18AB2E33F75E0E1D118F825968"
+    }
+  ]
+}
