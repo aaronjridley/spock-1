@@ -25,8 +25,7 @@ SPICE_DIR = ${PATH_SPICE}
 GSL_DIR   = ${PATH_GSL}
 
 
-CFLAGS=-g -I. -I./src \
--I$(GSL_DIR) -I$(GSL_DIR)/include -I$(SPICE_DIR) -I$(SPICE_DIR)/include
+CFLAGS=-g -I./src/ -I./include -I$(GSL_DIR)/include -I$(SPICE_DIR)/include
 
 LIBS=-lgsl -lgslcblas $(SPICE_DIR)/lib/csupport.a -lm \
 $(SPICE_DIR)/lib/cspice.a 
