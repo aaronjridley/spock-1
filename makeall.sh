@@ -1,9 +1,18 @@
 
 # To set 
+
 path_spock=$HOME # don't include the last '/' in the path
-is_sift=0 # set this variable to 1 if you want to use SpOCK as part of SIFT. But if you want to use SpOCK independtly of SIFT, set it to 0
-py_only=0 # if set to 1 and is_sift is 1 then doesnt compile SpOCK but just move the python scripts to ../ so that the demo can be run before installing SpOCK. cbv should st py_only to 1 before distributing SIFT so that users alreay ahve all these python scripts in ../ and can run the demo without running this makeall.sh
-# end of to set
+
+is_sift=0 # set this variable to 1 if you want to use SpOCK as part of
+	  # SIFT. But if you want to use SpOCK independtly of SIFT,
+	  # set it to 0
+
+py_only=0 # if set to 1 and is_sift is 1 then doesnt compile SpOCK but
+	  # just move the python scripts to ../ so that the demo can
+	  # be run before installing SpOCK. cbv should st py_only to 1
+	  # before distributing SIFT so that users alreay ahve all
+	  # these python scripts in ../ and can run the demo without
+	  # running this makeall.sh end of to set
 
 arg_compiler=mpicc # $1
 if [ "$arg_compiler" = "gcc" ]; then
@@ -16,29 +25,52 @@ fi
 
 
 if [ $is_sift -eq 1 ];then
+
     path_spice=./cspice # when distributing: ./cspice
     path_gsl=./gsl_installation # when distributing: ./gsl_installation
+
 else
-    path_spice=${PWD}/cspice   #$3 don't include the last '/' in the path
-    path_gsl=/usr/local    #$4 you can put ./ for current directory but don't put ../ for one level up. in this case, put absolute path. also, don't include the last '/' in the path
+
+    #$3 don't include the last '/' in the
+    path_spice=/Users/ridley/Software/Spice/cspice
+
+    #path $4 you can put ./ for current directory but don't put ../
+    #for one level up. in this case, put absolute path. also, don't
+    #include the last '/' in the path
+    # This is an installation with port on mac:
+    path_gsl=/opt/local
+    
 fi
 
-# ot run SpOCK from python script with os.system(path_mpirun + " -np 4 spock in.txt") -> looks like if cygwin then the system won't recognize mpirun so need to run orterun. But if linux.unix/other than cygwin, won't regcognize orterun so need to put mpirun
+# to run SpOCK from python script with os.system(path_mpirun + " -np 4
+# spock in.txt") -> looks like if cygwin then the system won't
+# recognize mpirun so need to run orterun. But if linux.unix/other
+# than cygwin, won't regcognize orterun so need to put mpirun
+
 if [ $OSTYPE = "cygwin" ]; then
     path_mpirun="orterun"
 else
     path_mpirun="mpirun"
 fi
-#path_mpirun="$(which orterun)" #/opt/local/bin/mpirun-openmpi-gcc49   #$5
 
-
-# if path to exectuable spock is not already in PATH then add it. Note: the user still needs to source the .bash_profile after running this makeall.sh file (not poassible to source it within this makeall.sh).
+# if path to exectuable spock is not already in PATH then add
+# it. Note: the user still needs to source the .bash_profile after
+# running this makeall.sh file (not poassible to source it within this
+# makeall.sh).
 ## create the varilable absolute path to executable spock
-if [[ "${path_spock:0:1}" == "." ]]; then # if path_spock includes the current directory "." as first char then repalce "." with absolute path of current directory to create the absolute path to executable spock
+if [[ "${path_spock:0:1}" == "." ]]; then
+    # if path_spock includes the current directory "." as first char
+    # then repalce "." with absolute path of current directory to
+    # create the absolute path to executable spock
     path_spock_after_pwd=$(cut -d "." -f 2 <<< "$path_spock") 
     path_spock_abso=$PWD$path_spock_after_pwd
-elif [[ "${path_spock:0:1}" == "~" ]]; then # if path_spock includes the current directory "~" as first char then repalce "~" with absolute path of home directory to create the absolute path to executable spock
-    path_spock_after_pwd=$(cut -d "." -f 0 <<< "$path_spock") # ignore warning with cut  that is likely to be printed when running this line
+elif [[ "${path_spock:0:1}" == "~" ]]; then
+    # if path_spock includes the current directory "~" as first char
+    # then repalce "~" with absolute path of home directory to create
+    # the absolute path to executable spock
+    path_spock_after_pwd=$(cut -d "." -f 0 <<< "$path_spock")
+    # ignore warning with cut that is likely to be printed when
+    # running this line
     path_spock_abso=$HOME$path_spock_after_pwd
 else # otherwise that means that path_spock is already an absolute path
     path_spock_abso=$path_spock
@@ -52,9 +84,16 @@ else
     echo "PATH=\$PATH:$path_spock_abso" >> $HOME/.bash_profile
 fi
 
-# add path to gsl lib and bin (suppsoed to prevent errors like "error while loading shared libraries"). Note: the user still needs to source the .bash_profile after running this makeall.sh file (not poassible to source it within this makeall.sh). !!! ALSO here for now only add ath to bin but mayeb need to add path to lib
+# add path to gsl lib and bin (suppsoed to prevent errors like "error
+# while loading shared libraries"). Note: the user still needs to
+# source the .bash_profile after running this makeall.sh file (not
+# poassible to source it within this makeall.sh). !!! ALSO here for
+# now only add ath to bin but mayeb need to add path to lib
 ## create the varilable absolute path to gsl
-if [[ "${path_gsl:0:1}" == "." ]]; then # if path_gsl includes the current directory "." as first char then repalce "." with absolute path of current directory to create the absolute path to gsl
+if [[ "${path_gsl:0:1}" == "." ]]; then
+    # if path_gsl includes the current directory "." as first char
+    # then repalce "." with absolute path of current directory to
+    # create the absolute path to gsl
     path_gsl_after_pwd=$(cut -d "." -f 2 <<< "$path_gsl")
     path_gsl_abso=$PWD$path_gsl_after_pwd
 else # otherwise that means that path_gsl is already an absolute path
@@ -73,24 +112,39 @@ fi
 
 
 ## create the varilable absolute path to executable spice
-if [[ "${path_spice:0:1}" == "." ]]; then # if path_spice includes the current directory "." as first char then repalce "." with absolute path of current directory to create the absolute path to executable spice
+if [[ "${path_spice:0:1}" == "." ]]; then
+    # if path_spice includes the current directory "." as first char
+    # then repalce "." with absolute path of current directory to
+    # create the absolute path to executable spice
     path_spice_after_pwd=$(cut -d "." -f 2 <<< "$path_spice") 
     path_spice_abso=$PWD$path_spice_after_pwd
-elif [[ "${path_spice:0:1}" == "~" ]]; then # if path_spice includes the current directory "~" as first char then repalce "~" with absolute path of home directory to create the absolute path to executable spice
-    path_spice_after_pwd=$(cut -d "." -f 0 <<< "$path_spice") # ignore warning with cut  that is likely to be printed when running this line
+elif [[ "${path_spice:0:1}" == "~" ]]; then
+    # if path_spice includes the current directory "~" as first char
+    # then repalce "~" with absolute path of home directory to create
+    # the absolute path to executable spice
+    path_spice_after_pwd=$(cut -d "." -f 0 <<< "$path_spice")
+    # ignore warning with cut that is likely to be printed when
+    # running this line
     path_spice_abso=$HOME$path_spice_after_pwd
 else # otherwise that means that path_spice is already an absolute path
     path_spice_abso=$path_spice   
 fi
 if [ $py_only -ne 1 ];then
-    # cp SPICE files to SPICE directory if this has not already been done. Same for gravitational spherical harmonincs and specular points
+    # cp SPICE files to SPICE directory if this has not already been
+    # done. Same for gravitational spherical harmonincs and specular
+    # points
     if [ ! -f "$path_spice_abso"/data/naif0012.tls ]; then
-	cp ./src/naif0012.tls ./src/de432s.bsp ./src/earth_000101_210404_210111.bpc ./src/pck00010.tpc "$path_spice_abso"/data
-	cp ./src/egm96_to360_not_norm.txt "$path_spice_abso"/data
-	cp ./src/{antenna.bin,antenna.info,sigma0_table.bin} "$path_spice_abso"/data
+	cp ./inputs/naif0012.tls "$path_spice_abso"/data
+	cp ./inputs/de432s.bsp "$path_spice_abso"/data
+	cp ./inputs/earth_000101_210404_210111.bpc "$path_spice_abso"/data
+	cp  ./inputs/pck00010.tpc "$path_spice_abso"/data
+	cp ./inputs/egm96_to360_not_norm.txt "$path_spice_abso"/data
+	cp ./inputs/{antenna.bin,antenna.info,sigma0_table.bin} "$path_spice_abso"/data
     fi
-    if [ $is_sift -eq 1 ];then # if compiling SpOCK to use it as part of SIFT then copy files for SIFT
-	cp ./src/{cygnss_geometry_2016.txt,my_ground_stations.txt} ../../input_sift/
+    if [ $is_sift -eq 1 ];then
+	# if compiling SpOCK to use it as part of SIFT then copy files
+	# for SIFT
+	cp ./inputs/{cygnss_geometry_2016.txt,my_ground_stations.txt} ../../input_sift/
     fi
 
     # Compile SpOCK (and specular point codes)
@@ -117,7 +171,7 @@ if [ $py_only -ne 1 ];then
 	#sudo /usr/libexec/ApplicationFirewall/socketfilterfw -add "$path_spock_abso"/spock_dev
 	# # Specular points binary files
 	#echo $path_compiler -o "$path_spock_abso"/spec ./src/find_specular_points_aspherical_dev.c -lm -w -I"$path_spice_abso" -I"$path_spice_abso"/include "$path_spice_abso"/lib/csupport.a "$path_spice_abso"/lib/cspice.a # change the path of the executable here
-	echo $path_compiler -o "$path_spock_abso"/spec_gnss_rcg ./src/find_specular_points_aspherical_dev_gnss.c -lm -w -I"$path_spice_abso" -I"$path_spice_abso"/include "$path_spice_abso"/lib/csupport.a "$path_spice_abso"/lib/cspice.a # change the path of the executable here	# added on 2020-05-19
+	echo $path_compiler -o "$path_spock_abso"/spec_gnss_rcg ./src/find_specular_points_aspherical_dev_gnss.c -lm -w -I"$path_spice_abso"/include "$path_spice_abso"/lib/csupport.a "$path_spice_abso"/lib/cspice.a # change the path of the executable here	# added on 2020-05-19
 # 	sudo /usr/libexec/ApplicationFirewall/socketfilterfw -add "$path_spock_abso"/spec_gnss
 # 	# Convert specular points binary files to txt files
 	#cd ./src/storm
