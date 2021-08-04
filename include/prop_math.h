@@ -1,7 +1,7 @@
  #ifndef __PROP_MATH_H__
 #define __PROP_MATH_H__
 #include <math.h>
-#include "mpi_fake/mpi.h"
+#include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
