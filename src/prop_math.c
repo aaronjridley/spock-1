@@ -8,11 +8,11 @@
 
 //  http:     //www.apache.org / licenses / LICENSE - 2.0
 
-//  Unless required by applicable law or agreed to in writing, //software distributed under the License is distributed on an
-//  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-//  KIND       , either express or implied.See the License for the
-//  specific language governing permissions and limitations
-//  under the License.
+//  Unless required by applicable law or agreed to in writing,
+//  //software distributed under the License is distributed on an "AS
+//  IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND , either
+//  express or implied. See the License for the specific language
+//  governing permissions and limitations under the License.
 
 //  These are math functions
 
@@ -366,7 +366,9 @@ int m_x_v6bis(double v_out[6], double m_in[6][6], double v_in[6]) {
 }
 
 //Matrix x Vector
-int m_x_v9(double v_out[9], double **m_in, double v_in[9]) {
+int m_x_v9(double v_out[9],
+	   double **m_in,
+	   double v_in[9]) {
 
     int i, j;
     for(i = 0; i < 9; i++) {
@@ -384,7 +386,9 @@ int m_x_v9(double v_out[9], double **m_in, double v_in[9]) {
 }
 
 //Matrix x Matrix(CBV 07 / 24 / 2015)
-int m_x_m(double m_out[3][3], double m_in1[3][3], double m_in2[3][3]) {
+int m_x_m(double m_out[3][3],
+	  double m_in1[3][3],
+	  double m_in2[3][3]) {
 
     int c, d, k;
     double sum = 0;
@@ -403,7 +407,9 @@ int m_x_m(double m_out[3][3], double m_in1[3][3], double m_in2[3][3]) {
 }
 
 //Matrix x Matrix(CBV 10 / 04 / 2016)
-int m_x_m6(double **m_out, double **m_in1, double **m_in2) {
+int m_x_m6(double **m_out,
+	   double **m_in1,
+	   double **m_in2) {
 
     int c, d, k;
     double sum = 0;
@@ -419,7 +425,9 @@ int m_x_m6(double **m_out, double **m_in1, double **m_in2) {
     return 0;
 }
 
-int m_x_m6bis(double m_out[6][6], double m_in1[6][6], double m_in2[6][6]) {
+int m_x_m6bis(double m_out[6][6],
+	      double m_in1[6][6],
+	      double m_in2[6][6]) {
 
     int c, d, k;
     double sum = 0;
@@ -466,10 +474,22 @@ int m_trans6(double m_out[6][6], double m_in[6][6]) {
     return 0;
 }
 
-int equin_to_class(double *sma, double *ecc, double *inc, double *raan,
-                   double *arg_per, double *true_ano, double *mean_ano,
-                   double af, double ag, double lam, double n, double chi,
-                   double psi, double mu, double et, double fr) {
+int equin_to_class(double *sma,
+		   double *ecc,
+		   double *inc,
+		   double *raan,
+                   double *arg_per,
+		   double *true_ano,
+		   double *mean_ano,
+                   double af,
+		   double ag,
+		   double lam,
+		   double n,
+		   double chi,
+                   double psi,
+		   double mu,
+		   double et,
+		   double fr) {
     //chi looks like a x
 
     *sma = pow(mu / (n * n), 1. / 3);
@@ -477,13 +497,13 @@ int equin_to_class(double *sma, double *ecc, double *inc, double *raan,
     double p, q;
 
     *inc = M_PI * (1 - fr) / 2. + 2 * fr * atan(sqrt(chi * chi + psi * psi));
-//Vallado 03:2 * atan(sqrt(chi * chi + psi * psi));
+    //Vallado 03:2 * atan(sqrt(chi * chi + psi * psi));
     *raan = atan2(chi, psi);
     *arg_per = atan2(ag, af) - fr * atan2(chi, psi);
-//Vallado 03:atan2(ag, af) - atan2(chi, psi);
+    //Vallado 03:atan2(ag, af) - atan2(chi, psi);
 
     *mean_ano = lam - atan2(ag, af);
-//Vallado 03:fmod(lam - *arg_per - *raan, 2 * M_PI);
+    //Vallado 03:fmod(lam - *arg_per - *raan, 2 * M_PI);
 
     //to get the true ano, convert to j2000 intertial the use cart2kep
     // equin to j2000
@@ -514,16 +534,21 @@ int equin_to_class(double *sma, double *ecc, double *inc, double *raan,
     cart2kep(&OE, r_cart_r, r_cart_v, et, mu / 1e9);
     //!!!!!!mu here needs to be in km3
     * true_ano = OE.f;
-    //printf("OE %f %e %f %f %f %f\n", OE.sma, OE.eccentricity, OE.inclination * 180 / M_PI, OE.long_an * 180 / M_PI, OE.w * 180 / M_PI, OE.f * 180 / M_PI);
 
     return 0;
 }
 
 
 //(1) (see footnote)
-int compute_T_deriv_equin_to_class(double T_equin_2_class[6][6], double af,
-                                   double ag, double lam, double n, double chi,
-                                   double psi, double mu, double fr) {
+int compute_T_deriv_equin_to_class(double T_equin_2_class[6][6],
+				   double af,
+                                   double ag,
+				   double lam,
+				   double n,
+				   double chi,
+                                   double psi,
+				   double mu,
+				   double fr) {
     //chi looks like a x
     double den1 = af * af + ag * ag;
     double den2 = (1 + chi * chi + psi * psi) * sqrt(chi * chi + psi * psi);
@@ -576,8 +601,15 @@ int compute_T_deriv_equin_to_class(double T_equin_2_class[6][6], double af,
 
 
 //r v cartensian ECI to equinoctial elements(1)
-int cart_to_equin(double *af, double *ag, double *lam, double *n, double *chi,
-                  double *psi, double mu, double fr, double rvec[3],
+int cart_to_equin(double *af,
+		  double *ag,
+		  double *lam,
+		  double *n,
+		  double *chi,
+                  double *psi,
+		  double mu,
+		  double fr,
+		  double rvec[3],
                   double vvec[3]) {
     //rvec and vvec in km and km / s.mu in km3
 
@@ -646,8 +678,15 @@ int cart_to_equin(double *af, double *ag, double *lam, double *n, double *chi,
 }
 
 //equinoctial elements to r v cartensian ECI(1)
-int equin_to_cart(double rvec[3], double vvec[3], double af, double ag,
-                  double lam, double n, double chi, double psi, double mu,
+int equin_to_cart(double rvec[3],
+		  double vvec[3],
+		  double af,
+		  double ag,
+                  double lam,
+		  double n,
+		  double chi,
+		  double psi,
+		  double mu,
                   double fr) {
 
     //solve for F
@@ -661,18 +700,15 @@ int equin_to_cart(double rvec[3], double vvec[3], double af, double ag,
     lamguess = fi + ag * cos(fi) - af * sin(fi);
     err = fabs((lam - lamguess) / lam);
     iter = 0;
-    //printf("XXXXXXXXXXX error[%d]: %.2f | %f %f %f %f %f %f %f %f\n", iter, err * 100, af, ag, lam, n, chi, psi, mu, fr);
     while(err > err_max) {
         fiplus = fi - (fi + ag * cos(fi) - af * sin(fi) - lam) / (1 - ag * sin(
                      fi) - af * cos(fi));
         fi = fiplus;
         lamguess = fi + ag * cos(fi) - af * sin(fi);
-        err = fabs((lam - lguess) / lam);
+        err = fabs((lam - lamguess) / lam);
         iter = iter + 1;
-        //printf("error[%d]: %e > %e | %d\n", iter, err, err_max, (err > err_max));
     }
     F =  fi;
-    //printf("F = %e | %f %f\n", F, l * 180. / M_PI, lguess * 180. / M_PI);
 
     double f[3], g[3], w[3];
     double fgwfac = 1 / (1 + chi * chi + psi * psi);
@@ -702,11 +738,6 @@ int equin_to_cart(double rvec[3], double vvec[3], double af, double ag,
     double cosl = ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af) /
                   (1 - ag * sin(
                        F) - af * cos(F));
-
-
-
-    /* r = a*(1 - af*sin(F) - ag*cos(F)); */
-    /* double  */
 
     double x = a * ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af);
     double y = a * ((1 - af * af * b) * sin(F) + ag * af * b * cos(F) - ag);
@@ -724,9 +755,15 @@ int equin_to_cart(double rvec[3], double vvec[3], double af, double ag,
 }
 
 //derivative matrix equinoctial elements to cartesian position velocity(1)
-equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
-              double n, double chi,
-              double psi, double mu, double fr) {
+int compute_T_deriv_equin_to_cart(double T_equin_to_cart[6][6],
+				  double af,
+				  double ag,
+				  double lam,
+				  double n,
+				  double chi,
+				  double psi,
+				  double mu,
+				  double fr) {
 
     double rvec[3], vvec[3];
 
@@ -741,7 +778,7 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     lamguess = fi + ag * cos(fi) - af * sin(fi);
     err = fabs((lam - lamguess) / lam);
     iter = 0;
-    ///printf("error[%d]: %.2f\n", iter, err * 100);
+
     while(err > err_max) {
         fiplus = fi - (fi + ag * cos(fi) - af * sin(fi) - lam) / (1 - ag * sin(
                      fi) - af * cos(fi));
@@ -749,10 +786,8 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
         lamguess = fi + ag * cos(fi) - af * sin(fi);
         err = fabs((lam - lamguess) / lam);
         iter = iter + 1;
-        //printf("error[%d]: %e > %e | %d\n", iter, err, err_max, (err > err_max));
     }
     F = fi;
-    //printf("F = %e | %f %f\n", F, lam * 180. / M_PI, lamguess * 180. / M_PI);
 
     double f[3], g[3], w[3];
     double fgwfac = 1 / (1 + chi * chi + psi * psi);
@@ -782,11 +817,6 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     double cosl = ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af) /
                   (1 - ag * sin(
                        F) - af * cos(F));
-
-
-
-    /* r = a*(1 - af*sin(F) - ag*cos(F)); */
-    /* double  */
 
     double x = a * ((1 - ag * ag * b) * cos(F) + ag * af * b * sin(F) - af);
     double y = a * ((1 - af * af * b) * sin(F) + ag * af * b * cos(F) - ag);
@@ -841,61 +871,8 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     double dydotdag = -a * xdot * ydot / (A * B) + A / r3 * (a * af * y /
                       (1 + B) + x * y / B);
 
-    /*
-     * // if the convention is to use derivative with respect to
-     * the sma (and not the mean motion)
-     */
-    /*
-     * T_equin_to_cart[0][0] = rx/a; T_equin_to_cart[0][1] =
-     * dxdaf*fe + dydaf*ge; T_equin_to_cart[0][2] = dxdag*fe +
-     * dydag*ge; T_equin_to_cart[0][3] = 2*(fr*psi*(y*fe - x*ge)
-     * - x*we)/C; T_equin_to_cart[0][4] = 2*fr*(chi*(x*ge - y*fe)
-     * + y*we)/C; T_equin_to_cart[0][5] = vx/n; // drx/d
-     */
-    /*
-     * T_equin_to_cart[1][0] = ry/a; T_equin_to_cart[1][1] =
-     * dxdaf*fq + dydaf*gq; T_equin_to_cart[1][2] = dxdag*fq +
-     * dydag*gq; T_equin_to_cart[1][3] = 2*(fr*psi*(y*fq - x*gq)
-     * - x*wq)/C; T_equin_to_cart[1][4] = 2*fr*(chi*(x*gq - y*fq)
-     * + y*wq)/C; T_equin_to_cart[1][5] = vy/n; // drx/d
-     */
-    /*
-     * T_equin_to_cart[2][0] = rz/a; T_equin_to_cart[2][1] =
-     * dxdaf*fw + dydaf*gw; T_equin_to_cart[2][2] = dxdag*fw +
-     * dydag*gw; T_equin_to_cart[2][3] = 2*(fr*psi*(y*fw - x*gw)
-     * - x*ww)/C; T_equin_to_cart[2][4] = 2*fr*(chi*(x*gw - y*fw)
-     * + y*ww)/C; T_equin_to_cart[2][5] = vz/n; // drx/d
-     */
-    /*
-     * T_equin_to_cart[3][0] = -vx/(2*a); T_equin_to_cart[3][1] =
-     * dxdotdaf*fe + dydotdaf*ge; T_equin_to_cart[3][2] =
-     * dxdotdag*fe + dydotdag*ge; T_equin_to_cart[3][3] =
-     * 2*(fr*psi*(ydot*fe - xdot*ge) - xdot*we)/C;
-     * T_equin_to_cart[3][4] = 2*fr*(chi*(xdot*ge - ydot*fe) +
-     * ydot*we)/C; T_equin_to_cart[3][5] = -n*a3*rx/r3; // drx/d
-     */
-    /*
-     * T_equin_to_cart[4][0] = -vy/(2*a); T_equin_to_cart[4][1] =
-     * dxdotdaf*fq + dydotdaf*gq; T_equin_to_cart[4][2] =
-     * dxdotdag*fq + dydotdag*gq; T_equin_to_cart[4][3] =
-     * 2*(fr*psi*(ydot*fq - xdot*gq) - xdot*wq)/C;
-     * T_equin_to_cart[4][4] = 2*fr*(chi*(xdot*gq - ydot*fq) +
-     * ydot*wq)/C; T_equin_to_cart[4][5] = -n*a3*ry/r3; // drx/d
-     */
-    /*
-     * T_equin_to_cart[5][0] = -vz/(2*a); T_equin_to_cart[5][1] =
-     * dxdotdaf*fw + dydotdaf*gw; T_equin_to_cart[5][2] =
-     * dxdotdag*fw + dydotdag*gw; T_equin_to_cart[5][3] =
-     * 2*(fr*psi*(ydot*fw - xdot*gw) - xdot*ww)/C;
-     * T_equin_to_cart[5][4] = 2*fr*(chi*(xdot*gw - ydot*fw) +
-     * ydot*ww)/C; T_equin_to_cart[5][5] = -n*a3*rz/r3; // drx/d
-     */
-
-
-
-
-
-    //if the convention is to use derivative with respect to the mean motion(and not the sma)
+    //if the convention is to use derivative with respect to the mean
+    //motion(and not the sma)
     T_equin_to_cart[0][0] = -2 * rx / (3 * n);
     T_equin_to_cart[0][1] = dxdaf * fe + dydaf * ge;
     T_equin_to_cart[0][2] = dxdag * fe + dydag * ge;
@@ -948,18 +925,20 @@ equin_to_cart(double T_equin_to_cart[6][6], double af, double ag, double lam,
     return 0;
 }
 
-//derivative matrix classical orbital elements to cartesian position velocity(page 28 - 31 of http://citeseerx.ist.psu.edu / viewdoc / download ? doi = 10.1 .1 .112 .5780 & rep = rep1 & type = pdf)
+//derivative matrix classical orbital elements to cartesian position
+//velocity ( page 28 - 31 of
+// http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.112.5780&rep=rep1&type=pdf
 int compute_T_deriv_class_to_cart(double T_class_to_cart[6][6], double a,
                                   double e, double i, double big_omega, double small_omega,
                                   double nu, double mu) {
     //o i raan, w is arg_per, nu is true ano
-    // a = 6860.7631 * 1000;
+    /* a = 6860.7631 * 1000;
     e = 0.0010640;
     i = 97.65184 * M_PI / 180;
     o = 79.54701 * M_PI / 180;
     w = 83.86041 * M_PI / 180;
     nu = 65.21303 * M_PI / 180;
-    //!!!!!remove
+    */
 
     double ri[6];
     //it's not ri, just a notation
@@ -1161,11 +1140,10 @@ int compute_T_inrtl_2_ntw(double T_inrtl_2_ntw[3][3],
 
     //Declarations
     double t[3], w[3], n[3];
-    //t = in - track;
-    w = cross - track;
-    n = vector in the orbital plane normal to the velocity(directed outwards from
-            the Earth)
-        int col;
+    /*t = in - track;
+      w = cross - track;
+      n = vector in the orbital plane normal to the velocity(directed outwards from
+      the Earth) */
 
     //Algorithm
     /*
@@ -1182,6 +1160,7 @@ int compute_T_inrtl_2_ntw(double T_inrtl_2_ntw[3][3],
     /* In-track cross cross-track */
     v_cross(n, t, w);
 
+    int col;
     for(col = 0; col < 3; col++) {
         T_inrtl_2_ntw[0][col] = t[col];
         //in - track
@@ -1194,17 +1173,23 @@ int compute_T_inrtl_2_ntw(double T_inrtl_2_ntw[3][3],
     return 0;
 }
 
-//compute transformation matrix from inertial to ntw but 6 by 6 dimensions.this is used to convert inertial covariance matricies * position, velocity) from inertial to ntw coordinates.
-//  important: contraritly to compute_T_inrtl_2_ntw, the outputs is ntw(twn in compute_T_inrtl_2_ntw).this is to compare to Vallado matlab 's script covct2o2.m (in Code/cygnss/collision/vallado/matlab or email from Vallado o July 9, 2018)
-//  source: Vallado matlab 's script covct2o2.m (in Code/cygnss/collision/vallado/matlab or email from Vallado o July 9, 2018)
+//compute transformation matrix from inertial to ntw but 6 by 6
+//  dimensions.  this is used to convert inertial covariance matricies
+//  * position, velocity) from inertial to ntw coordinates.
+//  important: contraritly to compute_T_inrtl_2_ntw, the outputs is
+//  ntw(twn in compute_T_inrtl_2_ntw).this is to compare to Vallado
+//  matlab 's script covct2o2.m (in
+//  Code/cygnss/collision/vallado/matlab or email from Vallado o July
+//  9, 2018) source: Vallado matlab 's script covct2o2.m (in
+//  Code/cygnss/collision/vallado/matlab or email from Vallado o July
+//  9, 2018)
 int  compute_T_inrtl_2_ntw_6by6(double T_inrtl_2_ntw_6by6[6][6],
                                 double r[3],
                                 double v[3]) {
     //Declarations
     double t [3], w[3], n[3];
-    //t = in - track;
-    //w = cross - track;
-    //n = vector in the orbital plane normal to the velocity(directed outwards from the Earth)
+    //t = in - track; w = cross - track; n = vector in the orbital
+    //plane normal to the velocity(directed outwards from the Earth)
     int col;
 
     //if lvlh
@@ -1227,7 +1212,8 @@ int  compute_T_inrtl_2_ntw_6by6(double T_inrtl_2_ntw_6by6[6][6],
 
     /* Radial (2/2) */
     v_scale(n, n, -1.0);
-    //this lign has been added by CBV on 07 - 29 - 2015 so that the basis(iv, w, n) is oriented w the right hand direction
+    //this lign has been added by CBV on 07 - 29 - 2015 so that the
+    //basis(iv, w, n) is oriented w the right hand direction
 
     /* //if ntw */
 
@@ -1286,7 +1272,7 @@ int  q_copy(double q_out[4], double q_in[4]) {
     return 0;
 }
 
-//Inertial to LVLH http:              //degenerateconic.com / wp - content / uploads / 2015 / 03 / lvlh.pdf
+//Inertial to LVLH http://degenerateconic.com/wp-content/uploads/2015/03/lvlh.pdf
 int compute_T_inrtl_2_lvlh(double T_inrtl_2_lvlh[3][3],
                            double r[3],
                            double v[3]) {
@@ -1316,7 +1302,8 @@ int compute_T_inrtl_2_lvlh(double T_inrtl_2_lvlh[3][3],
 
     /* Radial (2/2) */
     v_scale(ir, ir, -1.0);
-    //this lign has been added by CBV on 07 - 29 - 2015 so that the basis(iv, in, ir) is oriented in the right hand direction
+    //this lign has been added by CBV on 07 - 29 - 2015 so that the
+    //basis(iv, in, ir) is oriented in the right hand direction
 
     /* Along-track */
     T_inrtl_2_lvlh[0][0] = iv[0];
@@ -1356,7 +1343,8 @@ int compute_T_inrtl_2_earth_pres_frame(double T_inrtl_2_earth_pres_frame[3][3],
                                        double r[3], double et) {
     //Declarations
     double xep[3], yep[3], zep[3];
-    //"ep": Earth Pressure frame->coordiantes of the vectors of the EP frame in the inertial refererence frame
+    //"ep": Earth Pressure frame->coordiantes of the vectors of the EP
+    //frame in the inertial refererence frame
     double xep_temp[3];
     double rmag;
     double x[6];
@@ -1365,7 +1353,9 @@ int compute_T_inrtl_2_earth_pres_frame(double T_inrtl_2_earth_pres_frame[3][3],
     v_mag(&rmag, r);
 
     spkez_c(10, et, "J2000", "NONE", 399, x, &lt);
-    //Return the state(position and velocity) of a target body relative to an observing body, optionally corrected for light time(planetary aberration) and stellar aberration.
+    //Return the state(position and velocity) of a target body
+    //relative to an observing body, optionally corrected for light
+    //time(planetary aberration) and stellar aberration.
     r_earth2sun_J2000[0] = x[0];
     r_earth2sun_J2000[1] = x[1];
     r_earth2sun_J2000[2] = x[2];
@@ -1407,10 +1397,15 @@ int compute_T_inrtl_2_earth_pres_frame(double T_inrtl_2_earth_pres_frame[3][3],
     return 0;
 }
 
-int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
-                         int order_rotation[3], char attitude_profile[256], double *et,
-                         double r_i2cg_INRTL[3], double v_i2cg_INRTL[3],
-                         int file_is_quaternion, double quaternion[4],
+int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3],
+			 double v_angle[3],
+                         int order_rotation[3],
+			 char attitude_profile[256],
+			 double *et,
+                         double r_i2cg_INRTL[3],
+			 double v_i2cg_INRTL[3],
+                         int file_is_quaternion,
+			 double quaternion[4],
                          PARAMS_T * PARAMS) {
 
     /* Declarations */
@@ -1440,14 +1435,16 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
     //////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
     /////////////////////QUATERNION /////////////////////////////////////////////
-    //the quaternion code was made to read the quaternion files of swarm at https:              //swarm - diss.eo.esa.int /
-#swarm%2FLevel1b%2FEntire_mission_data%2FSTRxATT
+    //the quaternion code was made to read the quaternion files of swarm at
+    // https://swarm - diss.eo.esa.int/#swarm%2FLevel1b%2FEntire_mission_data%2FSTRxATT
     double *p = malloc(sizeof(double)), *r = malloc(sizeof(double)),
             *y = malloc(sizeof(double));
     if(file_is_quaternion == 1) {
-        //if attitude is set using quaternions
-        // the quaternion I get from swarm are the rotation from sc to ecef so we need to convert from ecef to lvlh now
-        // first calculate r_ecef2cg_ECEF and v_ecef2cg_ECEF from their inertial coordinates
+        //if attitude is set using quaternions the quaternion I get
+        // from swarm are the rotation from sc to ecef so we need to
+        // convert from ecef to lvlh now first calculate
+        // r_ecef2cg_ECEF and v_ecef2cg_ECEF from their inertial
+        // coordinates
         SpiceDouble xform[6][6];
         double estate[6], jstate[6];
         double r_ecef2cg_ECEF[3], v_ecef2cg_ECEF[3];
@@ -1466,18 +1463,24 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
         v_ecef2cg_ECEF[1] = jstate[4];
         v_ecef2cg_ECEF[2] = jstate[5];
 
-        ////then compute the transformation matrix ecef to lvlh(use the equations of the transformation eci to lvlh but it 's the same equations, it' s just the inputs r and v that are now ecef instead of eci)
+        ////then compute the transformation matrix ecef to lvlh(use
+        ////the equations of the transformation eci to lvlh but it 's
+        ////the same equations, it' s just the inputs r and v that are
+        ////now ecef instead of eci)
         double T_ecef_2_lvlh[3][3];
         compute_T_inrtl_2_lvlh(T_ecef_2_lvlh, r_ecef2cg_ECEF, v_ecef2cg_ECEF);
 
-        ////then compute the transformation matrix from sc to ecef from the quaternions sc to ecef
+        ////then compute the transformation matrix from sc to ecef
+        ////from the quaternions sc to ecef
         double T_ecef_to_sc_temp[3][3];
         q2m_c(quaternion, T_ecef_to_sc_temp);
         //!!!!!!q2m_c(quaternion, T_sc_to_ecef);
 
         double T_ecef_to_sc[3][3];
         for(i = 0; i < 3; i++) {
-            //this i sbecause in swarm the x body is the same as the x body of spock but the y body swarm is minus the y body spock and the z body swarm is minus the z body spock
+            //this i sbecause in swarm the x body is the same as the x
+            //body of spock but the y body swarm is minus the y body
+            //spock and the z body swarm is minus the z body spock
             T_ecef_to_sc[0][i] = T_ecef_to_sc_temp[0][i];
             T_ecef_to_sc[1][i] = -T_ecef_to_sc_temp[1][i];
             T_ecef_to_sc[2][i] = -T_ecef_to_sc_temp[2][i];
@@ -1495,8 +1498,7 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
     else { //no quaternion
         ///////////////////// ANY ATTITUDE EXCEPT SUN POINTED ////////////////////////
         if(strcmp(attitude_profile, "sun_pointed") != 0) {
-            //if the
-            attitude profile is anything except sun pointed
+            //if the attitude profile is anything except sun pointed
             for(i = 0; i < 3; i++) {
                 v_angle_rad[i] = v_angle[i] * DEG2RAD;
             }
@@ -1590,8 +1592,7 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
             m_x_m(T_sc_to_lvlh_temp, second_mat, first_mat);
             m_x_m(T_sc_to_lvlh, third_mat, T_sc_to_lvlh_temp);
             //m_print(T_sc_to_lvlh, "euler T_sc_to_lvlh");
-        } //if the
-        attitude profile is anything except sun pointed
+        }  // if the attitude profile is anything except sun pointed
 
         //////////////////////////////////////////////////////////////////////////////
         //////////////////////////////SUN POINTED ///////////////////////////////////
@@ -1602,10 +1603,10 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
              * (J2000)
              */
             spkez_c(10, et[0], "J2000", "NONE", 399, x, &lt);
-            //Return the state(position and velocity) of a target body relative to an observing body,
-            optionally corrected for light time(planetary aberration)
-                and stellar aberration.
-                r_earth2sun_J2000[0] = x[0];
+            // Return the state(position and velocity) of a target body
+            // relative to an observing body, optionally corrected for
+            // light time(planetary aberration) and stellar aberration.
+            r_earth2sun_J2000[0] = x[0];
             r_earth2sun_J2000[1] = x[1];
             r_earth2sun_J2000[2] = x[2];
 
@@ -1775,7 +1776,7 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
              * "new_e_x_body_in_lvlh_normalized");
              *  *\\/ *\/
              */
-            /************************************** END OF 'BLOCK B: UNCOMMENT BELOW TO SET X_BODY IN THE DIRECTION OF LVLH_X' **********************************/
+            /**END OF 'BLOCK B: UNCOMMENT BELOW TO SET X_BODY IN THE DIRECTION OF LVLH_X' ***/
 
             /*
              * // We now have the new body frame,
@@ -1793,8 +1794,7 @@ int compute_T_sc_to_lvlh(double T_sc_to_lvlh[3][3], double v_angle[3],
             }
 
 
-        } //if sun
-        pointed
+        } //if sun pointed
     } //not quaternion
 
 
@@ -1819,7 +1819,9 @@ int compute_T_enu_to_ecef(double
     geocentric_latitude = atan((1 - flattening) * (1 - flattening) * tan(
                                    geodetic_latitude));
 
-    //Compute the rotation matrix from ENU to the same frame as ENU except that we rotate the ENU of an angle(geodetic_latitude - geocentric_latitude) around the East axis
+    //Compute the rotation matrix from ENU to the same frame as ENU
+    //except that we rotate the ENU of an angle(geodetic_latitude -
+    //geocentric_latitude) around the East axis
     double rot_angle;
     rot_angle = geodetic_latitude - geocentric_latitude;
     T_enu_to_east_north_center_earth_to_local[0][0] = 1;
@@ -1833,7 +1835,15 @@ int compute_T_enu_to_ecef(double
     T_enu_to_east_north_center_earth_to_local[2][2] = cos(rot_angle);
 
 
-    //Compute the rotation matrix from the local east_north_center_earth_to_local of the place at the surface of the earth to ECEF.This is different from ENU because of the oblateness of the Earth.This frame uses the geocentric latitude(because it goes through the center of the Earth, like the ECEF).ENU uses the geodetic latitude.Therefore, to convert from ENU to ECEF, first use compute_T_enu_to_east_north_center_earth_to_local then compute_t_east_north_center_earth_to_local_to_ecef
+    //Compute the rotation matrix from the local
+    //east_north_center_earth_to_local of the place at the surface of
+    //the earth to ECEF.This is different from ENU because of the
+    //oblateness of the Earth.This frame uses the geocentric
+    //latitude(because it goes through the center of the Earth, like
+    //the ECEF).ENU uses the geodetic latitude.Therefore, to convert
+    //from ENU to ECEF, first use
+    //compute_T_enu_to_east_north_center_earth_to_local then
+    //compute_t_east_north_center_earth_to_local_to_ecef
     T_east_north_center_earth_to_local_to_ecef[0][0] = -sin(longitude);
     T_east_north_center_earth_to_local_to_ecef[0][1] = -sin(
                 geocentric_latitude) * cos(longitude);
@@ -1848,7 +1858,9 @@ int compute_T_enu_to_ecef(double
     T_east_north_center_earth_to_local_to_ecef[2][1] = cos(geocentric_latitude);
     T_east_north_center_earth_to_local_to_ecef[2][2] = sin(geocentric_latitude);
 
-    //Rotation matrix from ENU to ECEF: first rotate from ENU to east_north_center_earth_to_local.Then rotation from east_north_center_earth_to_local to ECEF
+    //Rotation matrix from ENU to ECEF: first rotate from ENU to
+    //east_north_center_earth_to_local.Then rotation from
+    //east_north_center_earth_to_local to ECEF
     m_x_m(T_enu_to_ecef, T_east_north_center_earth_to_local_to_ecef,
           T_enu_to_east_north_center_earth_to_local);
 
@@ -1864,5 +1876,9 @@ int etprint(double et_to_print, char str_print[256]) {
     return 0;
 }
 
-//FOOTNOTE:
-//(1):                (Vallado and Alfano 2015 "Updated Analytical Partials for Covariance Transformations and Optimization"(a few typos) and Danielson et al.1995 "Semianalytic Satellite Theory"(that 's how i found the typos in Alfano. Alfano numerical results are correct though but there are some typos in the expresssions of the equations)
+//FOOTNOTE: (1): (Vallado and Alfano 2015 "Updated Analytical Partials
+//for Covariance Transformations and Optimization"(a few typos) and
+//Danielson et al.1995 "Semianalytic Satellite Theory"(that 's how i
+//found the typos in Alfano. Alfano numerical results are correct
+//though but there are some typos in the expresssions of the
+//equations)
